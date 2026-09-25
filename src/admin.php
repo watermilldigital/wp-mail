@@ -142,6 +142,7 @@ add_action(
 				$counts     = watermill_mail_counts( 7 * 24 );
 				$last       = watermill_mail_last_failure( 7 * 24 );
 				$production = 'production' === wp_get_environment_type();
+				// WP Base's non-production mail block lives in its `environment` file, which a site can skip (e.g. for Mailpit).
 				?>
 				<style>
 					#watermill_mail .inside { margin: 0; padding: 0; }
@@ -163,7 +164,7 @@ add_action(
 						}
 						?>
 					</p>
-					<?php if ( ! $production ) : ?>
+					<?php if ( ! $production && ! in_array( 'environment', defined( 'WP_BASE_SKIP' ) ? (array) WP_BASE_SKIP : array(), true ) ) : ?>
 						<p class="description">
 							<?php
 							/* translators: %s: environment type, e.g. local or staging. */

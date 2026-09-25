@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/watermilldigital/wp-mail/tags"><img src="https://img.shields.io/badge/version-v1.0.0-blue" alt="Version"></a>
+  <a href="https://github.com/watermilldigital/wp-mail/tags"><img src="https://img.shields.io/badge/version-v1.0.1-blue" alt="Version"></a>
   <img src="https://img.shields.io/badge/php-%5E8.4-777bb4" alt="PHP ^8.4">
   <img src="https://img.shields.io/badge/license-GPL--2.0--or--later-blue" alt="License: GPL-2.0-or-later">
 </p>
@@ -48,6 +48,18 @@ define( 'WP_MAIL_LOG_DAYS', 90 );
 ```
 
 Keep the credentials out of the repo: define them from environment variables in `wp-config.php`. For email to reach inboxes, the sending domain also needs the SPF and DKIM records your provider gives you, plus a DMARC record.
+
+## Email locally with Mailpit
+
+[Mailpit](https://mailpit.axllent.org) catches every email in a local web inbox instead of sending it. Point SMTP at it with no TLS:
+
+```php
+define( 'WP_MAIL_SMTP_HOST', '127.0.0.1' );
+define( 'WP_MAIL_SMTP_PORT', 1025 );
+define( 'WP_MAIL_SMTP_SECURE', '' );
+```
+
+Outside production WP Base blocks all email before it reaches SMTP, so also skip its `environment` file locally: `define( 'WP_BASE_SKIP', array( 'environment' ) );`. Never do that on staging, which would then email real people from a copy of real data.
 
 ## Install
 

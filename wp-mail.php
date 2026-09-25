@@ -3,7 +3,7 @@
  * Plugin Name: WP Mail
  * Author: WaterMill Digital
  * Author URI: https://watermilldigital.com
- * Version: 1.0.0
+ * Version: 1.0.1
  * Description: Sends WordPress email through SMTP, logs every email (Tools → Email log), and warns in wp-admin when email isn't set up or is failing.
  * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
